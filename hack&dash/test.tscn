@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://de2416l4fyuhm"]
+[gd_scene load_steps=7 format=3 uid="uid://de2416l4fyuhm"]
 
+[ext_resource type="Texture2D" uid="uid://clj3kg60l83e2" path="res://icon.svg" id="1_8uh7m"]
 [ext_resource type="PackedScene" uid="uid://gxf3li808vbr" path="res://player.tscn" id="1_37kl0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8uh7m"]
@@ -9,7 +10,9 @@ bounce = 7.8
 [sub_resource type="BoxShape3D" id="BoxShape3D_6uqi0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8uh7m"]
+disable_fog = true
 albedo_color = Color(0.178212, 0.178212, 0.178212, 1)
+albedo_texture = ExtResource("1_8uh7m")
 
 [sub_resource type="BoxMesh" id="BoxMesh_8uh7m"]
 lightmap_size_hint = Vector2i(14, 21)
@@ -31,3 +34,9 @@ mesh = SubResource("BoxMesh_8uh7m")
 skeleton = NodePath("../..")
 
 [node name="player" parent="." instance=ExtResource("1_37kl0")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -97.1929, 0.00876689)
+light_energy = 16.0
+light_size = 0.081
+omni_range = 27.3899

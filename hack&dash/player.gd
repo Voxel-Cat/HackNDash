@@ -1,15 +1,17 @@
 extends CharacterBody3D
 
 # How fast the player moves in meters per second.
-@export var speed = 14
+@export var speed = 24
 # The downward acceleration when in the air, in meters per second squared.
 @export var fall_acceleration = 75
 
 var target_velocity = Vector3.ZERO
-
+var Jumps = 2
 func _physics_process(delta):
 	var direction = Vector3.ZERO
-
+	
+	if is_on_floor():
+		Jumps = 2
 	if Input.is_action_pressed("move_right"):
 		direction.x += 1
 	if Input.is_action_pressed("move_left"):
@@ -18,7 +20,19 @@ func _physics_process(delta):
 		direction.z += 1
 	if Input.is_action_pressed("move_forward"):
 		direction.z -= 1
-		
+	if Input.is_action_just_pressed("jump") and not Jumps == 0:
+		target_velocity.y = 35
+		Jumps = Jumps-1 
+	
+	
+	#var ball_spin_x = $ball.global_rotation.z + velocity.x*delta/3.14
+	#var ball_spin_z = $ball.global_rotation.x+ velocity.z*delta/3.14
+	#$ball.global_rotation.z = ball_spin_x
+	#$ball.global_rotation.x= ball_spin_z
+	$ball.global_rotate(Vector3.RIGHT,velocity.z*delta)
+	$ball.global_rotate(Vector3.FORWARD,velocity.x*delta)
+	
+	
 
 
 	# Ground Velocity
