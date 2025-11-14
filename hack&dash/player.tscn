@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://gxf3li808vbr"]
+[gd_scene load_steps=7 format=3 uid="uid://gxf3li808vbr"]
 
 [ext_resource type="Script" uid="uid://x7vaihc164e3" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://clj3kg60l83e2" path="res://icon.svg" id="2_onrkg"]
@@ -11,6 +11,8 @@ material = SubResource("StandardMaterial3D_i3pqv")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ykrsh"]
 
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_onrkg"]
+
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_onrkg")
 
@@ -22,5 +24,10 @@ skeleton = NodePath("../..")
 transform = Transform3D(-4.3152e-08, 0, 0.987203, 0, 0.987203, 0, -0.987203, 0, -4.3152e-08, 0, 0, 0)
 shape = SubResource("SphereShape3D_ykrsh")
 
-[node name="Head" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.680747, 0.732519, 0, -0.732519, 0.680747, 0, 2.24218, 2.17694)
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.923846, 0.382764, 0, -0.382764, 0.923846, 0, 0, 0)
+shape = SubResource("SeparationRayShape3D_onrkg")
+spring_length = 3.0
+
+[node name="Headcam" type="Camera3D" parent="SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0316199, 2.94845)

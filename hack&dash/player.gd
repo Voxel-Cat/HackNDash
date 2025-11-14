@@ -7,6 +7,8 @@ extends CharacterBody3D
 
 var target_velocity = Vector3.ZERO
 var Jumps = 2
+var Dashes = 2
+var Head_Rotation = 0 
 func _physics_process(delta):
 	var direction = Vector3.ZERO
 	
@@ -23,14 +25,14 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("jump") and not Jumps == 0:
 		target_velocity.y = 35
 		Jumps = Jumps-1 
+
+	if Input.is_action_just_pressed("dash"):
+		pass
 	
 	
-	#var ball_spin_x = $ball.global_rotation.z + velocity.x*delta/3.14
-	#var ball_spin_z = $ball.global_rotation.x+ velocity.z*delta/3.14
-	#$ball.global_rotation.z = ball_spin_x
-	#$ball.global_rotation.x= ball_spin_z
 	$ball.global_rotate(Vector3.RIGHT,velocity.z*delta)
 	$ball.global_rotate(Vector3.FORWARD,velocity.x*delta)
+	
 	
 	
 
